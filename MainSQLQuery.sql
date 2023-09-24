@@ -41,7 +41,7 @@ A column name issue with "UniqueID" was resolved prior to this step.
 The column's original name contains an extra space and was removed via renaming.
 */
 
---A self join to connect entries where the address is missing with where
+--A self join to connect entries where the address is missing with another entry where an address is present and possesses the same ID
 SELECT main.ParcelID, main.PropertyAddress, t.ParcelID, t.PropertyAddress, ISNULL(main.PropertyAddress, t.PropertyAddress)
 FROM SQLCleaning..NashvilleHousing main
 JOIN SQLCleaning..NashvilleHousing t
@@ -107,7 +107,7 @@ ADD OwnerSplitAddress nvarchar(255);
 ALTER TABLE SQLCleaning..NashvilleHousing
 ADD OwnerCity nvarchar(255);
 ALTER TABLE SQLCleaning..NashvilleHousing
-ADD OwnerState nvarchar(50);
+ADD OwnerState nvarchar(5);
 
 --Updating added columns to corresponding information
 UPDATE SQLCleaning..NashvilleHousing
